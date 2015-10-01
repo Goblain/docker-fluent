@@ -1,4 +1,5 @@
 FROM alpine:latest
+MAINTAINER Radoslaw 'Goblin' Pieczonka <goblin@pentex.pl>
 
 RUN apk update; apk add ruby ruby-dev ruby-irb build-base ;\
     gem install json ;\
@@ -6,3 +7,6 @@ RUN apk update; apk add ruby ruby-dev ruby-irb build-base ;\
     fluentd --setup ;\
     gem install fluent-plugin-secure-forward ;\
     apk del ruby-dev build-base
+
+CMD ["fluentd"]
+
