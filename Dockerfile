@@ -1,12 +1,13 @@
 FROM alpine:latest
 MAINTAINER Radoslaw 'Goblin' Pieczonka <goblin@pentex.pl>
 
-RUN apk update; apk add ruby ruby-dev ruby-irb build-base ;\
+RUN apk update; apk add ruby ruby-dev ruby-irb build-base curl-dev ;\
     gem install json ;\
-    gem install fluentd --no-ri --no-rdoc ;\ 
+    gem install --no-ri --no-rdoc fluentd;\ 
     fluentd --setup ;\
-    gem install fluent-plugin-secure-forward ;\
-    apk del ruby-dev build-base
+    gem install --no-ri --no-rdoc fluent-plugin-secure-forward ;\
+    gem install --no-ri --no-rdoc fluent-plugin-elasticsearch ;\
+    apk del ruby-dev build-base curl-dev
 
 CMD ["fluentd"]
 
